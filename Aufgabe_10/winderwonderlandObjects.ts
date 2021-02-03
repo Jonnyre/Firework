@@ -1,0 +1,6 @@
+class WinterwonderlandObjects {
+    //postion
+
+    //farbe
+    
+}
