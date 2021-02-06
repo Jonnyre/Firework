@@ -16,7 +16,6 @@ export namespace ServerFirework {
 
     function startServer(_port: number | string): void {
         let server: Http.Server = Http.createServer();
-        //console.log(server);
         console.log("Server starting on: " + _port);
 
         server.listen(_port);
@@ -37,31 +36,17 @@ export namespace ServerFirework {
         
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-            console.log(url);
             let path: string | null = url.pathname;
             if (path == "/save") {
                 storeFirecracker(url);
                 _response.end();
             }
-            else if (path == "/getOne") {
-                
-                let firecrackerItem: string[] | null = await firecrackers.findOne({firecrackerId: url.query.firecrackerId});
-                console.log(JSON.stringify(firecrackerItem));
-                _response.write(JSON.stringify(firecrackerItem));
-                _response.end();
-            }
             else if (path == "/getAll") {
                 
                 let firecrackersArray: string[] = await firecrackers.find({}).toArray();
-                console.log(JSON.stringify(firecrackersArray));
                 _response.write(JSON.stringify(firecrackersArray));
                 _response.end();
             }
-            else if (path == "/removeAll") {
-                firecrackers.deleteMany({});
-                _response.end();
-            }
-            
         }  
     } 
     async function storeFirecracker(_url: Url.UrlWithParsedQuery): Promise<void> {

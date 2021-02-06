@@ -14,14 +14,24 @@ body {
     flex-direction: column;
     justify-content: space-around;
 }
+
 .upperDiv {
     display: flex;
+    flex: 1;
 }
 
 .middleDiv {
     display: flex;
+    flex: 20;
+    flex-direction: row;
+}
+
+.lowerDiv {
+    display: flex;
     flex: 1;
     flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
 }
 
 .canvas {
@@ -31,8 +41,7 @@ body {
 
 #canvas {
     display: flex;
-    margin: 20px;
-    border: 2px solid black;
+    flex: 1;
     background-color: black;
 }
 
@@ -49,13 +58,6 @@ body {
     width: 150px;
     border-radius: 80px;
     margin: 20px;
-}
-
-.lowerDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 20px;
 }
 
 .control {

@@ -15,7 +15,6 @@ var ServerFirework;
     connectToDatabase(databaseURL);
     function startServer(_port) {
         let server = Http.createServer();
-        //console.log(server);
         console.log("Server starting on: " + _port);
         server.listen(_port);
         server.addListener("request", handleRequest);
@@ -31,26 +30,14 @@ var ServerFirework;
         _response.setHeader("content-type", "text/html; charset=utf-8");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            console.log(url);
             let path = url.pathname;
             if (path == "/save") {
                 storeFirecracker(url);
                 _response.end();
             }
-            else if (path == "/getOne") {
-                let firecrackerItem = await firecrackers.findOne({ firecrackerId: url.query.firecrackerId });
-                console.log(JSON.stringify(firecrackerItem));
-                _response.write(JSON.stringify(firecrackerItem));
-                _response.end();
-            }
             else if (path == "/getAll") {
                 let firecrackersArray = await firecrackers.find({}).toArray();
-                console.log(JSON.stringify(firecrackersArray));
                 _response.write(JSON.stringify(firecrackersArray));
-                _response.end();
-            }
-            else if (path == "/removeAll") {
-                firecrackers.deleteMany({});
                 _response.end();
             }
         }
